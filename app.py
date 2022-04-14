@@ -133,7 +133,7 @@ with col_img:
 
 # test_stat_string = f"{x1:.2f} \geq {t.ppf(0.95,df):.2f}"
 # test_bool = str(bool(x1>=t.ppf(0.95,df)))
-col_result_1,col_result_2,col_result_3,col_result_4,col_result_5,col_result_6 = st.columns((3,4,1,4,1,4))
+col_result_1,col_result_2,col_result_3,col_result_4,col_result_5,col_result_6 = st.columns((3,4,1,4,1,5))
 col_result_1.markdown("# $\displaystyle{\Phi \mathbb{1} \{ }$")
 col_result_2.metric("value of the test", round(x1,2), (x1-q_a).round(2))
 if one_side == 2:
