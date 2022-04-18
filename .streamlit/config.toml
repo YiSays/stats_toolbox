@@ -4,3 +4,7 @@ primaryColor="#ff715b"
 secondaryBackgroundColor="#9dd3f5"
 textColor="#4c5454"
 font="monospace"
+
+[deprecation]
+showPyplotGlobalUse = false
+showUserWarning = false
