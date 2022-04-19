@@ -41,7 +41,7 @@ from sympy import *
 from sympy.stats import Exponential, Poisson, Gamma, Beta, Normal, Bernoulli, Binomial,Geometric, Uniform
 from sympy.stats import density, E, variance, cdf, quantile, Expectation
 
-st.header("Basic Properties of Distribution")
+st.subheader("Basic Properties of Distribution")
 
 a, b = symbols("a b", real=True)
 p = Symbol("p", positive=True)
@@ -140,7 +140,7 @@ with col_fig:
 from scipy.stats import t, norm, chi2, kstwo, ksone
 import numpy as np
 
-st.header("Pivotal Table for Hypothesis Test")
+st.subheader("Pivotal Table for Hypothesis Testing")
 
 # "before updating"
 # st.session_state
