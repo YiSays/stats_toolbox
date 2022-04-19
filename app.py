@@ -43,7 +43,7 @@ from sympy.stats import density, E, variance, cdf, quantile, Expectation
 
 st.subheader("Basic Properties of Distribution")
 
-a, b = symbols("a b", real=True)
+x, a, b = symbols("x a b", real=True)
 p = Symbol("p", positive=True)
 n = Symbol("n", integer=True, positive=True)
 l = Symbol("lambda", positive=True)
@@ -53,7 +53,6 @@ alpha = Symbol("alpha", positive=True)
 beta = Symbol("beta", positive=True)
 mu = Symbol("mu")
 sigma = Symbol("sigma", positive=True)
-x = Symbol("x", positive=True)
 
 dist_fml = {
     "Discrete": {
@@ -94,6 +93,7 @@ elif num_p == 2:
     p1 = dist_fml.get(dist_type).get(dist_name).get("p1")
     p2 = dist_fml.get(dist_type).get(dist_name).get("p2")
     X = dist("X", p1.get("var"), p2.get("var"))
+
 if dist_type == "Discrete":
     col_prop.error("Plotting disabled")
 else:
@@ -126,7 +126,7 @@ with col_fig:
         else:
             plt.style.use("seaborn-whitegrid")
             fig_pdf = plot(
-                pdf.subs(p1["var"], p1_value).subs(p2["var"], p2_value), 
+                pdf.subs({p1["var"]: p1_value, p2["var"]:p2_value}), 
                 (x,dist_fml[dist_type][dist_name]["x"]["min"],dist_fml[dist_type][dist_name]["x"]["max"]), 
                 show=False, title="Probability Density Function", xlabel="random variable - x", ylabel="P(x)",
                 )
@@ -234,8 +234,6 @@ with col_img:
     ax.set_title(f"Hypothesis Testing - {test_fml[test_name]} Distribution")
     st.pyplot(fig_dist)
 
-# test_stat_string = f"{x1:.2f} \geq {t.ppf(0.95,df):.2f}"
-# test_bool = str(bool(x1>=t.ppf(0.95,df)))
 
 col_result_1.markdown("# $\displaystyle{\Phi \mathbb{1} \{ }$")
 if one_side:
@@ -255,10 +253,6 @@ elif x1>q_a:
 else:
     col_result_6.markdown("### Failed to reject $H_0$")
 
-# st.latex(
-#     "\displaystyle{ \Phi\{T_n>q_a\} \quad = \quad \Phi\ \{"
-#      + test_stat_string + "\} \quad = \quad " + test_bool +" }"
-# )
 footer_markdown = """
 > look-up tool (Beta Ver 0.1.0) for [Fundamental of Statistics](https://learning.edx.org/course/course-v1:MITx+18.6501x+1T2022/home)
 """
