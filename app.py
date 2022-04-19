@@ -34,12 +34,8 @@ footer:after{
 st.markdown(hide_menu, unsafe_allow_html=True)
 
 # Webpage Start
-title_markdown = """
-# [Fundamntal of Statistics](https://learning.edx.org/course/course-v1:MITx+18.6501x+1T2022/home)
-> A statistical look-up tool (Beta Ver 0.1.0)
-"""
+
 # st.title("Fundamntal of Statistics")
-st.markdown(title_markdown)
 
 from sympy import *
 from sympy.stats import Exponential, Poisson, Gamma, Beta, Normal, Bernoulli, Binomial,Geometric, Uniform
@@ -263,6 +259,9 @@ else:
 #     "\displaystyle{ \Phi\{T_n>q_a\} \quad = \quad \Phi\ \{"
 #      + test_stat_string + "\} \quad = \quad " + test_bool +" }"
 # )
-
+footer_markdown = """
+> look-up tool (Beta Ver 0.1.0) for [Fundamental of Statistics](https://learning.edx.org/course/course-v1:MITx+18.6501x+1T2022/home)
+"""
+st.markdown(footer_markdown)
 # "after updating"
 # st.session_state
