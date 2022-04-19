@@ -140,7 +140,7 @@ with col_fig:
 from scipy.stats import t, norm, chi2, kstwo, ksone
 import numpy as np
 
-st.header("Pivotal Table for Hypothesis Testing")
+st.header("Pivotal Table for Hypothesis Test")
 
 # "before updating"
 # st.session_state
