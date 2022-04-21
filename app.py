@@ -63,11 +63,11 @@ dist_fml = {
         "Poisson":{"num_p":1, "p1":{"var":l, "min":0., "max":1., "default":.5},"x":{"var":x, "min":1, "max":10}},
     },
     "Continuous":{ 
+        "Normal":{"num_p":2, "p1":{"var":mu, "min":-5., "max":5., "default":.0}, 
+            "p2":{"var":sigma, "min":-5., "max":5., "default":1.}, "x":{"var":x, "min":-5, "max":5}},
         "Exponential":{"num_p":1, "p1":{"var":l, "min":0., "max":5., "default":1.},"x":{"var":x, "min":0, "max":5}}, 
         "Uniform":{"num_p":2, "p1":{"var":a, "min":-5., "max":5., "default":.0}, 
             "p2":{"var":b, "min":0., "max":10., "default":5.}, "x":{"var":x, "min":-5, "max":10}},
-        "Normal":{"num_p":2, "p1":{"var":mu, "min":-5., "max":5., "default":.0}, 
-            "p2":{"var":sigma, "min":-5., "max":5., "default":1.}, "x":{"var":x, "min":-5, "max":5}},
         "Gamma":{"num_p":2, "p1":{"var":k, "min":0., "max":5., "default":1.}, 
             "p2":{"var":theta, "min":0., "max":5., "default":2.}, "x":{"var":x, "min":0, "max":10}},
         "Beta":{"num_p":2, "p1":{"var":alpha, "min":0., "max":5., "default":2.}, 
@@ -80,8 +80,8 @@ dist_type = col_dist_1.selectbox("", dist_fml.keys(), 1,)
 dist_name = col_dist_2.selectbox("", dist_fml.get(dist_type).keys(),)
 dist = globals()[dist_name]
 discrete = dist_type== "Discrete"
-col_dist_3.selectbox("", ["Plotting", "Plotting Disabled"], int(discrete), disabled=True)
-with st.expander("Expand to check out pdf, expectation, variance, plotting ..."):
+col_dist_3.selectbox("", ["Plotting PDF", "Plotting Disabled"], int(discrete), disabled=True)
+with st.expander("expand/collapse", expanded=True):
     col_prop, col_fig = st.columns((2,3))
 
 
@@ -121,7 +121,7 @@ with col_fig:
             fig_pdf = plot(
                 pdf.subs(p1["var"], p1_value), 
                 (x,dist_fml[dist_type][dist_name]["x"]["min"],dist_fml[dist_type][dist_name]["x"]["max"]), 
-                show=False, title="Probability Density Function", xlabel="random variable - x", ylabel="P(x)",
+                show=False, title="Probability Density", xlabel="random variable - x", ylabel="P(x)",
                 )
         else:
             plt.style.use("seaborn-whitegrid")
@@ -183,7 +183,7 @@ if not (one_side or test_name == "ks"):
     alpha = alpha/2
 
 ################ Test Statistic Calculation #######################
-with st.expander("Expand to check out pivotal table, p-value, test result..."):
+with st.expander("expand/collapse", expanded=True):
     col_setting, col_img = st.columns((1,2))
     col_result_1,col_result_2,col_result_3,col_result_4,col_result_5,col_result_6 = st.columns((3,4,1,4,1,5))
 
@@ -220,7 +220,7 @@ with col_img:
     fig_dist, ax = plt.subplots(1, 1)
     fig_x = np.linspace(q_min, q_max, 100,)
     fig_y = getattr(test, "pdf")(fig_x, df)
-    ax.plot(fig_x, fig_y, 'k-', lw=1, alpha=0.6, label='PDF Curve')
+    ax.plot(fig_x, fig_y, 'k-', lw=1.5, alpha=0.5, label='Probability Density')
     if not one_side:
         ax.fill_between(fig_x, fig_y, 0, np.abs(fig_x)>q_a, color="r", alpha=0.3, label="Reject Region")
     elif one_side == 1:
