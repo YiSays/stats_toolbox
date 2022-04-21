@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 st.set_page_config(
    page_title="Statistics Tools",
    page_icon="🧰",
-   layout="centered",
+   layout="wide",
    initial_sidebar_state="expanded",
 )
 
@@ -185,7 +185,7 @@ if not (one_side or test_name == "ks"):
 ################ Test Statistic Calculation #######################
 with st.expander("expand/collapse", expanded=True):
     col_setting, col_img = st.columns((1,2))
-    col_result_1,col_result_2,col_result_3,col_result_4,col_result_5,col_result_6 = st.columns((3,4,1,4,1,5))
+    col_result_1,col_result_2,col_result_3,col_result_4,col_result_5,col_result_6 = st.columns((2,4,1,4,1,4))
 
 def update_pvalue():
     st.session_state.pvalue = getattr(test, "ppf")(y1, df).round(2)
