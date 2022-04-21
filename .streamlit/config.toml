@@ -7,4 +7,3 @@ font="monospace"
 
 [deprecation]
 showPyplotGlobalUse = false
-showUserWarning = false

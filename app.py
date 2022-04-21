@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 st.set_page_config(
    page_title="Statistics Tools",
    page_icon="🧰",
-   layout="wide",
+   layout="centered",
    initial_sidebar_state="expanded",
 )
 
