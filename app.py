@@ -185,7 +185,7 @@ if not (one_side or test_name == "ks"):
 ################ Test Statistic Calculation #######################
 with st.expander("expand/collapse", expanded=True):
     col_setting, col_img = st.columns((1,2))
-    col_result_1,col_result_2,col_result_3,col_result_4,col_result_5,col_result_6 = st.columns((2,4,1,4,1,4))
+    col_result_1,col_result_2,col_result_3,col_result_4,col_result_5,col_result_6 = st.columns((3,3,1,4,1,5))
 
 def update_pvalue():
     st.session_state.pvalue = getattr(test, "ppf")(y1, df).round(2)
@@ -237,7 +237,7 @@ with col_img:
 
 col_result_1.markdown("# $\displaystyle{\Phi \mathbb{1} \{ }$")
 if one_side:
-    col_result_2.metric("value of the test", round(x1,2), (x1-q_a).round(2))
+    col_result_2.metric("test value", round(x1,2), (x1-q_a).round(2))
 else:
     col_result_2.metric("value of the test", round(abs(x1),2), (abs(x1)-q_a).round(2))
 if one_side == 2:
@@ -246,10 +246,12 @@ else:
     col_result_3.markdown("#  > ")
 col_result_4.metric("quantile at alpha", q_a.round(2))
 col_result_5.markdown("# $ \} $ ")
-if one_side == 2 and (x1<q_a):
-    col_result_6.markdown("# $\color{red}{Reject} \  H_0$ ")
-elif x1>q_a:
-    col_result_6.markdown("# $\color{red}{ Reject } \ H_0$ ")
+if not one_side and ( abs(x1)>q_a ):
+    col_result_6.markdown("## $\color{red}{Reject} \  H_0$ ")
+elif one_side == 2 and (x1<q_a):
+    col_result_6.markdown("## $\color{red}{Reject} \  H_0$ ")
+elif one_side == 1 and (x1>q_a):
+    col_result_6.markdown("## $\color{red}{Reject} \ H_0$ ")
 else:
     col_result_6.markdown("### Failed to reject $H_0$")
 
