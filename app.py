@@ -169,7 +169,7 @@ if df_map[test_name]:
 else:
     df_default, df_min = 0, 0
 
-alpha = col_setup_2.selectbox("test signifcant level".upper(), (0.1, .05,.01), 1)
+alpha = col_setup_2.selectbox("test signifcant level".upper(), (0.1, .05,.01, .02), 1)
 test_type = {0:"two-sided (|Tn| > c)", 1:"one-sided (Tn > c)", 2:"one-sided (Tn < c)"}
 one_side = col_setup_3.selectbox("test type".upper(), test_type.keys(), format_func=test_type.get)
 
